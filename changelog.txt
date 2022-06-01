@@ -1,3 +1,7 @@
 0.1 - 5/29/22
 - Added gold, enimies, and weapons
 - Started working the game
+
+0.15 - 5/31/22
+- Added health and xp
+- Started to work on food

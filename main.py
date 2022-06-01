@@ -52,7 +52,9 @@ if weaponChoice == "sword":
   
 
 def combatStart():
+  global tempXpCount
   global newPlayerGold
+  tempXpCount = xpCount
   newPlayerGold = playerGold
   if combat:
     print("An enemy has engaged")
@@ -63,6 +65,7 @@ def combatStart():
       enemy_type = zombie
     enemy_health = enemy_type.health
     enemy_damage = enemy_type.damage
+    enemy_level = enemy_type.level
     weapon_damage = activeWeapon.damage
     player_health = (100 + (Player.level * 25))
     combatStarted = True
@@ -79,10 +82,15 @@ def combatStart():
       if enemy_health <= 0:
         print("You won!")
         newPlayerGold += (enemy_type.level * random.randint(20,40))
-        return(newPlayerGold)
+        tempXpCount += (enemy_level * random.randint(5,10))
 
+        
+
+def mainScreen():
+  print("Welcome to the village!")
 
         
 combatStart()
-playerGold += newPlayerGold
 
+playerGold += newPlayerGold
+xpCount += tempXpCount
