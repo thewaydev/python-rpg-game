@@ -1,0 +1,3 @@
+0.1 - 5/29/22
+- Added gold, enimies, and weapons
+- Started working the game
