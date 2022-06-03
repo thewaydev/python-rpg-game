@@ -5,3 +5,7 @@
 0.15 - 5/31/22
 - Added health and xp
 - Started to work on food
+
+0.17 - 6/2/22
+- Made it a functioning loop
+- Started to work on the shop

@@ -29,7 +29,7 @@ class player:
     self.level = level
 
 xpCount = 0
-levelCount = 1
+levelCount = 3
 playerGold = 0
 combat = True
 
@@ -37,13 +37,14 @@ combat = True
 stick = weapon(5, 75, 100)
 sword = weapon(10, 70, 300)
 
-skeleton = enemy(10, 300, 5)
-zombie = enemy(10, 500, 6)
+skeleton = enemy(10, 30, 5)
+zombie = enemy(10, 50, 6)
+theif = enemy(15, 100, 10)
 
 
 Player = player(levelCount)
 
-weaponChoice = input("What weapon do you want to use?")
+weaponChoice = input(sprint("What weapon do you want to use?"))
 if weaponChoice == "stick":
   activeWeapon = stick
 if weaponChoice == "sword":
@@ -57,17 +58,19 @@ def combatStart():
   tempXpCount = xpCount
   newPlayerGold = playerGold
   if combat:
-    print("An enemy has engaged")
-    enemy_type_number = random.randint(1,2)
+    enemy_type_number = random.randint(1,levelCount)
     if enemy_type_number == 1:
       enemy_type = skeleton
     if enemy_type_number == 2:
       enemy_type = zombie
+    if enemy_type_number == 3:
+      enemy_type = theif
     enemy_health = enemy_type.health
     enemy_damage = enemy_type.damage
     enemy_level = enemy_type.level
     weapon_damage = activeWeapon.damage
     player_health = (100 + (Player.level * 25))
+    sprint("An" + str(enemy_type) + "has engaged")
     combatStarted = True
     while combatStarted:
       action = input("What would you like to do?")
@@ -75,19 +78,32 @@ def combatStart():
         enemy_health = enemy_health - weapon_damage
         player_health -= enemy_damage
       if action == "test":
-        print(str(player_health))
+        sprint(str(player_health))
       if player_health <= 0:
-        print("You have fallen")
+        sprint("You have fallen")
         break
       if enemy_health <= 0:
-        print("You won!")
+        sprint("You won!")
         newPlayerGold += (enemy_type.level * random.randint(20,40))
         tempXpCount += (enemy_level * random.randint(5,10))
+        mainScreen()
 
         
 
 def mainScreen():
   print("Welcome to the village!")
+  home_tf = True
+  while home_tf == True:
+    home_action = input("What would you like to do?")
+    if home_action == "Fight" or "fight":
+      combatStart()
+      break
+    if home_action == "Shop" or "shop":
+      sprint("Welcome to the shop!")
+      sprint("1. Food, 2. Weapons")
+      
+      
+      
 
         
 combatStart()
