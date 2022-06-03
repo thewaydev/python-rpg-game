@@ -29,6 +29,7 @@ class player:
     self.level = level
 
 xpCount = 0
+foodCount = 0
 levelCount = 3
 playerGold = 0
 combat = True
@@ -36,6 +37,7 @@ combat = True
 
 stick = weapon(5, 75, 100)
 sword = weapon(10, 70, 300)
+devstick = weapon(1000, 100, 100)
 
 skeleton = enemy(10, 30, 5)
 zombie = enemy(10, 50, 6)
@@ -49,6 +51,8 @@ if weaponChoice == "stick":
   activeWeapon = stick
 if weaponChoice == "sword":
   activeWeapon = sword
+if weaponChoice == "devstick":
+  activeWeapon = devstick
 
   
 
@@ -77,15 +81,21 @@ def combatStart():
       if action == "attack":
         enemy_health = enemy_health - weapon_damage
         player_health -= enemy_damage
-      if action == "test":
+      if action == "devtest1":
         sprint(str(player_health))
+      if action == "devtest2":
+        sprint(str(enemy_health))
+      if action == "":
+        player_health -= enemy_damage
       if player_health <= 0:
         sprint("You have fallen")
         break
       if enemy_health <= 0:
         sprint("You won!")
         newPlayerGold += (enemy_type.level * random.randint(20,40))
+        sprint("+ " + str(newPlayerGold) + " Gold!")
         tempXpCount += (enemy_level * random.randint(5,10))
+        
         mainScreen()
 
         
@@ -104,9 +114,11 @@ def mainScreen():
       
       
       
+      
 
         
 combatStart()
 
 playerGold += newPlayerGold
 xpCount += tempXpCount
+
