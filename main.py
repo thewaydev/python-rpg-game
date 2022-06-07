@@ -24,9 +24,16 @@ class food:
     self.regen = regen
     self.level = level
 
+class armor:
+  def __init__(self, defense, level):
+    self.defense = defense
+    self.level = level
+
 class player:
   def __init__(self, level):
     self.level = level
+
+    
 
 xpCount = 0
 foodCount = 0
