@@ -43,6 +43,8 @@ skeleton = enemy(10, 30, 5)
 zombie = enemy(10, 50, 6)
 theif = enemy(15, 100, 10)
 
+burger = food(100, 1)
+
 
 Player = player(levelCount)
 
@@ -74,6 +76,7 @@ def combatStart():
     enemy_level = enemy_type.level
     weapon_damage = activeWeapon.damage
     player_health = (100 + (Player.level * 25))
+    playerMaxHealth = player_health
     sprint("An" + str(enemy_type) + "has engaged")
     combatStarted = True
     while combatStarted:
@@ -81,6 +84,12 @@ def combatStart():
       if action == "attack":
         enemy_health = enemy_health - weapon_damage
         player_health -= enemy_damage
+      if action == "eat":
+        food_choice = input("What do you want to eat?")
+        if food_choice == "burger":
+          player_health += burger.regen
+          if player_health > playerMaxHealth:
+            player_health = playerMaxHealth
       if action == "devtest1":
         sprint(str(player_health))
       if action == "devtest2":
