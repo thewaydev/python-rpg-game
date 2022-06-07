@@ -110,6 +110,8 @@ def combatStart():
         
 
 def mainScreen():
+  global newPlayerGold2
+  newPlayerGold2 = playerGold
   print("Welcome to the village!")
   home_tf = True
   while home_tf == True:
@@ -119,7 +121,13 @@ def mainScreen():
       break
     if home_action == "Shop" or "shop":
       sprint("Welcome to the shop!")
-      sprint("1. Food, 2. Weapons")
+      shop_action = input("1. Food, 2. Weapons")
+      if shop_action == "Food" or "food":
+        sprint("What type of food would you like to buy?")
+        food_buy_type = input(": ")
+        if food_buy_type == "burger" or "Burger":
+          newPlayerGold2 -= 30
+      
       
       
       
